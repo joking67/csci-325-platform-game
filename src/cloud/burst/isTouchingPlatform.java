@@ -1,7 +1,6 @@
 package cloud.burst;
 
 import java.awt.*;
-import cloud.burst.Platforms;
 /**
  * Created by Team-CloudBurst on 11/17/2016.
  */

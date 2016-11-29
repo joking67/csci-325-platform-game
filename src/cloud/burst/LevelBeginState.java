@@ -54,7 +54,7 @@ public class LevelBeginState extends CurrentGameState {
             xAxis = (Math.random() * (800));
             //////// pass platforms only height //////////////////////////////
 
-
+            //Begin FOR loop generating random platform positions
             for (int i = 1; i < p.length; i++) {
                 yAxis = yAxis - 90;
 
@@ -71,7 +71,6 @@ public class LevelBeginState extends CurrentGameState {
                     } else {
                         xAxis = 22;
                     }
-
                 }
                 p[i] = new Platforms((int) xAxis, (int) yAxis);
             }
@@ -85,7 +84,6 @@ public class LevelBeginState extends CurrentGameState {
             p[i].tick();
         }
         dewey.tick(p);
-
     }
 
     public void draw(Graphics g) {
@@ -109,6 +107,7 @@ public class LevelBeginState extends CurrentGameState {
         }
     }
 
+    //KeyPressed listener (activated when correct keys are pressed)
     public void keyPressed(int n) {
         dewey.keyPressed(n);
 
@@ -118,6 +117,7 @@ public class LevelBeginState extends CurrentGameState {
         }
     }
 
+    //Listening for when key pressed is released
     public void keyReleased(int n) {
         dewey.keyReleased(n);
 

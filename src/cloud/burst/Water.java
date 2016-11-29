@@ -15,20 +15,17 @@ public class Water extends Rectangle{
     //collision detection
     public boolean gameOver = false;
 
-
-
-
     //set water image
     Image mWater;
 
-
+    //Setting Bounds
     public Water(int x, int y){
         this.x = x;
         this.y = y;
         setBounds(x,y,waterWidth,waterHeight);
     }
 
-
+    // Draw images on screen
     public void draw(Graphics g){
         if(!gameOver) {
             ImageIcon water = new ImageIcon("images/water.png");
@@ -36,5 +33,4 @@ public class Water extends Rectangle{
             g.drawImage(mWater, (x - (int) CurrentGameState.xOffset), (y - (int) CurrentGameState.yOffset), waterWidth, waterHeight, null);
         }
     }
-
 }

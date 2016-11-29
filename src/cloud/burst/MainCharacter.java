@@ -3,7 +3,6 @@ package cloud.burst;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Team-CloudBurst on 11/13/2016.
@@ -16,9 +15,7 @@ public class MainCharacter {
     // ---------- end of character image -----------//
 
     //Game over
-    GameOver GO;
     Image bkgImg;
-    public boolean isOver=false;
 
 
     //------Movement--------//
@@ -94,15 +91,6 @@ public class MainCharacter {
                 }
 
                 //top collision
-                /*if (isTouchingPlatform.deweyOnPlatform(new Point(iX + (int) CurrentGameState.xOffset + 1,
-                        iY + (int) CurrentGameState.yOffset), p[i]) ||
-                        isTouchingPlatform.deweyOnPlatform(new Point(iX + width + (int) CurrentGameState.xOffset - 1,
-                                iY + (int) CurrentGameState.yOffset), p[i])) {
-                    jumping = false;
-                    falling = true;
-                }*/
-                //bottom collision
-
                 if (isTouchingPlatform.deweyOnPlatform(new Point(iX + (int) CurrentGameState.xOffset + 2,
                         iY + height + (int) CurrentGameState.yOffset), p[i]) ||
                         isTouchingPlatform.deweyOnPlatform(new Point(iX + width + (int) CurrentGameState.xOffset - 1,
@@ -111,6 +99,7 @@ public class MainCharacter {
                     falling = false;
                     topCollision = true;
                 }
+                //END OF TOP COLLISION
 
                 //------ WATER COLLISION CHECK ---------//
                 //-------GAME OVER!!!!! ---------------//
@@ -132,9 +121,8 @@ public class MainCharacter {
                 }
     // --------- END OF FOR PLATFORM COLLISION LOOP --------//
 
-
-
         //-------------END OF COLLISIONS LOOP-------------//
+
 
         //resetting topCollision
         topCollision = false;

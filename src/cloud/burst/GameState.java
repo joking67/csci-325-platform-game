@@ -21,16 +21,17 @@ public class GameState {
 
     }
 
-    // -----------------------//
+    // ---------- TICK - Updating Game Logic - (each class may or may not use) ----------//
     public void tick(){
         states.peek().tick();
     }
-    //---------------------------------//
+
+    //------------ DRAWS IMAGES ON SCREEN ------------------//
     public void draw(Graphics g){
         states.peek().draw(g);
 
     }
-    //---------------------//
+    //------- LISTENERS ---------//
     public void keyPressed(int n){
         states.peek().keyPressed(n);
     }

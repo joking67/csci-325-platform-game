@@ -8,6 +8,7 @@ import java.awt.*;
  */
 public class GameMain {
 
+    //Set frame Data - All
     public static void main (String[] args){
         JFrame frame = new JFrame("CloudBurst");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
