@@ -11,21 +11,21 @@ public class Platforms extends Rectangle{
     int max = 200;
     int min = 1;
     public double random;
-    public double xPosRandom = Math.random()*300+1;
+
     public static final int platformHeight = 60;
     public double platformWidth = randomCheck();
     Image cloudPlatform;
 
     //CONSTRUCTOR
     public Platforms(int x, int y){
-        setBounds(x , y, (int)platformWidth, platformHeight);
+        setBounds(x, y, (int)platformWidth, platformHeight);
     }
 
     // checks to make sure width of platform is not less than width of dewey (causes collision issues)
     private double randomCheck(){
         random = Math.random() * max + min;
         if(random < 61){
-            random = random + 80;
+            random = random + 200;
         }
         return random;
     }

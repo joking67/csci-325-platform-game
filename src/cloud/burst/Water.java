@@ -11,10 +11,9 @@ public class Water extends Rectangle{
     public static int waterHeight = 400;
     public static int x;
     public static int y;
+
     //collision detection
-    public boolean topCollision=false;
     public boolean gameOver = false;
-    GameOver go = new GameOver();
 
 
 
@@ -34,10 +33,8 @@ public class Water extends Rectangle{
         if(!gameOver) {
             ImageIcon water = new ImageIcon("images/water.png");
             mWater = water.getImage();
-            g.drawImage(mWater, x - (int) CurrentGameState.xOffset, y - (int) CurrentGameState.yOffset, waterWidth, waterHeight, null);
+            g.drawImage(mWater, (x - (int) CurrentGameState.xOffset), (y - (int) CurrentGameState.yOffset), waterWidth, waterHeight, null);
         }
-        else
-            go.draw(g);
     }
 
 }

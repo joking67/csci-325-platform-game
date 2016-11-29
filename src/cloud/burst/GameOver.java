@@ -6,16 +6,17 @@ import java.awt.event.KeyEvent;
 /**
  * Created by Team-CloudBurst on 11/20/2016.
  */
-public class GameOver{
+public class GameOver {
 
-    private Image bkgImg = Toolkit.getDefaultToolkit().createImage("images/Game Over Image.png");
+    //images
+    private Image bkgImg;
     // --------- end of images ---------//
 
 
 
-    //start state is set to one of the game states
+//    start state is set to one of the game states
     public GameOver(){
-
+        bkgImg = Toolkit.getDefaultToolkit().createImage("images/GameOver.png");
     }
 
 
@@ -25,6 +26,10 @@ public class GameOver{
 
     public void tick(){
 
+    }
+
+    public Image getBkgImg(){
+        return bkgImg;
     }
 
     public void draw(Graphics g){

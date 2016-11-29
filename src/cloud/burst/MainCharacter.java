@@ -3,6 +3,7 @@ package cloud.burst;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Team-CloudBurst on 11/13/2016.
@@ -15,8 +16,9 @@ public class MainCharacter {
     // ---------- end of character image -----------//
 
     //Game over
-    GameOver gOver;
-    Graphics ig;
+    GameOver GO;
+    Image bkgImg;
+    public boolean isOver=false;
 
 
     //------Movement--------//
@@ -36,7 +38,7 @@ public class MainCharacter {
     private double moveSpeed = 6;
 
     //jumping and jumping speed
-    private double jumpSpeed = 5;
+    private double jumpSpeed = 7;
     private double currentJumpSpeed = jumpSpeed;
 
     //falling and falling speed
@@ -57,7 +59,7 @@ public class MainCharacter {
         this.height = height;
         i = new ImageIcon("images/deweyRightFace.png");
         deweyImg = i.getImage();
-        gOver = new GameOver();
+        bkgImg = Toolkit.getDefaultToolkit().createImage("images/GameOver.png");
     }
     //------- END OF CONSTRUCTOR ---------//
 
@@ -66,9 +68,8 @@ public class MainCharacter {
     public void tick(Platforms[] p){
 
         //casting x and y to int to be used with new Point (point does not accept doubles)
-        int iX = (int)x;
-        int iY = (int)y;
-        boolean gameOver = false;
+        int iX = (int)this.x;
+        int iY = (int)this.y;
 
         // ---------------- COLLISION CHECKING LOOP --------------//
         /*
@@ -93,36 +94,46 @@ public class MainCharacter {
                 }
 
                 //top collision
-                if (isTouchingPlatform.deweyOnPlatform(new Point(iX + (int) CurrentGameState.xOffset + 1,
+                /*if (isTouchingPlatform.deweyOnPlatform(new Point(iX + (int) CurrentGameState.xOffset + 1,
                         iY + (int) CurrentGameState.yOffset), p[i]) ||
                         isTouchingPlatform.deweyOnPlatform(new Point(iX + width + (int) CurrentGameState.xOffset - 1,
                                 iY + (int) CurrentGameState.yOffset), p[i])) {
                     jumping = false;
                     falling = true;
-                }
+                }*/
+                //bottom collision
 
                 if (isTouchingPlatform.deweyOnPlatform(new Point(iX + (int) CurrentGameState.xOffset + 2,
-                        iY + height + (int) CurrentGameState.yOffset + 1), p[i]) ||
+                        iY + height + (int) CurrentGameState.yOffset), p[i]) ||
                         isTouchingPlatform.deweyOnPlatform(new Point(iX + width + (int) CurrentGameState.xOffset - 1,
-                                iY + height + (int) CurrentGameState.yOffset + 1), p[i])) {
+                                iY + height + (int) CurrentGameState.yOffset), p[i])) {
                     y = p[i].getY() - height - CurrentGameState.yOffset;
                     falling = false;
                     topCollision = true;
-                } else {
-                    if (!topCollision && !jumping) {
-                        falling = true;
-                    }
                 }
 
-            if (isTouchingWater.deweyOnWater(new Point(iX + (int) CurrentGameState.xOffset + 1,
-                    iY + (int) CurrentGameState.yOffset), w) ||
-                    isTouchingWater.deweyOnWater(new Point(iX + width + (int) CurrentGameState.xOffset - 1,
-                            iY + (int) CurrentGameState.yOffset), w))
-            {
-                gOver.draw();
-            }
+                //------ WATER COLLISION CHECK ---------//
+                //-------GAME OVER!!!!! ---------------//
+                if(isTouchingWater.deweyOnWater((int)(iY + height + CurrentGameState.yOffset))){
+                    //Game over update image and set size
+                    deweyImg = bkgImg;
+                    falling = false;
+                    this.x = 0;
+                    this.y = 0;
+                    width = 1004;
+                    height = 669;
+                }
+                //------ GAME IS OVER WHEN WATER IS TOUCHED --------//
+                else {
+                    if (!topCollision ) {
+                            falling = true;
+                        }
+                    }
+                }
+    // --------- END OF FOR PLATFORM COLLISION LOOP --------//
 
-    }
+
+
         //-------------END OF COLLISIONS LOOP-------------//
 
         //resetting topCollision
@@ -172,6 +183,7 @@ public class MainCharacter {
             currentFallSpeed = .1;
         }
     }
+
 
     public void draw(Graphics g){
         g.drawImage(deweyImg,(int)x,(int)y,width,height, null);
