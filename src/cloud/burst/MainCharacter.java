@@ -64,7 +64,7 @@ public class MainCharacter {
     //------- END OF CONSTRUCTOR ---------//
 
     // when user presses arrow keys (left or right)
-    // the cordinate is increased or decreased
+    // the coordinate is increased or decreased
     public void tick(Platforms[] p){
 
         //casting x and y to int to be used with new Point (point does not accept doubles)

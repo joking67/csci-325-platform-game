@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
  */
 public class GameOver {
 
-    //images
+    //new Background Image
     private Image bkgImg;
     // --------- end of images ---------//
 
